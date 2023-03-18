@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>CareTrack</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+	</script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="./css/main.css">
+	<link rel="stylesheet" href="./css/login.css">
+	<script type="text/javascript">
+		$(document).ready(function(){
+
+			$( "#form2" ).submit(function(event) {
+				event.preventDefault();
+
+				$.ajax({
+					type: 'POST',
+					url: '/assign',
+					data: $('#form2').serialize(),
+					dataType: "json",
+					success: function(response){
+						//alert("a");
+						//console.log(response.Success);
+						$('#form')[0].reset();
+
+						document.getElementById("check").innerHTML=response.Success;
+         					//ADD THIS CODE
+         					setTimeout(function(){
+         						document.getElementById("check").innerHTML="";
+         					},3000);
+         					if (response.Success=="Success!") {
+         						document.getElementById("aa").click();
+         					};
+         				},
+         				error: function() {
+         				}
+         			})
+			});
+
+		});
+	</script>
+</head>
+<body>
+	
+      <img class="logo" src="./img/CareTrack Logo.png" alt="Logo">
+      <div class="wrapper">
+         <div class="title">
+            Task Assign
+         </div>
+         <!-- assign-task.ejs -->
+     <form id="form2" method="POST" action="/assign">
+            <label for="patient_id">Bed ID:</label>
+            <input type="text" name="patient_id" id="patient_id">
+        <br>
+            <label for="nurse_id">Nurse ID:</label>
+            <select name="nurse_id" id="nurse_id">
+              </select>
+        <br>
+            <label for="task_description">Task Description:</label>
+            <textarea name="task_description" id="task_description"></textarea>
+        <br>
+            <label for="due_date">Due Date:</label>
+            <input type="date" name="due_date" id="due_date">
+        <br>
+        <button type="submit">Assign Task</button>
+    </form>
+  
+      </div>
+  
+	  
+	</div>
+	<div class="mssg bg-danger">
+		<span id="check" ></span>
+	</div>
+	<div id="LangTable"><a href="/profile" id="aa"></a>
+
+</body>
+</html>
