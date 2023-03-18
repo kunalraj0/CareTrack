@@ -164,4 +164,7 @@ router.post('/assign',function (req, res, next) {
 	}
   });
 
+  router.get('/qr', function (req, res, next) {
+	res.render("qr.ejs");
+});
 module.exports = router;
