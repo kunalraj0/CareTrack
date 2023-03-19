@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var User = require('../models/user');
 var Task = require('../models/task');
-
+var Patient = require('../models/patients')
 router.get('/', function (req, res, next) {
 	return res.render('index.ejs');
 });
@@ -92,6 +92,19 @@ router.get('/profile', function (req, res, next) {
 		}else{
 			//console.log("found");
 			return res.render('data.ejs', {"name":data.username,"email":data.email});
+		}
+	});
+});
+router.get('/display', function (req, res, next) {
+	console.log("display");
+	Task.findOne({patient_id:req.session.userId},function(err,data){
+		console.log("data");
+		console.log(data);
+		if(!data){
+			res.redirect('/');
+		}else{
+			//console.log("found");
+			return res.render('display.ejs', {"pid":data.patient_id,"name":data.nurse_id,"email":data.task_description,"status":data.status,"date":data.due_date});
 		}
 	});
 });
