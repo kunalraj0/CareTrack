@@ -1,11 +1,13 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+const User = require('./user');
 
 TaskSchema = new Schema({
 	patient_id: String,
 	nurse_id: {
-		type: mongoose.Schema.Types.ObjectId,
-		ref: 'User'
+		type: String,
+		ref: 'User',
+		autopopulate: true,
 	},
 	task_description: String,
 	due_date: Date,

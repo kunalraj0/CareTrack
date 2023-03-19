@@ -33,6 +33,20 @@ app.use(session({
   })
 }));
 
+// // Define an array of nurses
+// const nurses = [
+// 	{ id: 1, name: 'Nurse A' },
+// 	{ id: 2, name: 'Nurse B' },
+// 	{ id: 3, name: 'Nurse C' },
+//   ];
+  
+//   // Render the EJS file and pass the nurses array as a variable
+//   app.get('/assign', (req, res) => {
+// 	res.render('assign', { nurses });
+//   });
+  
+
+
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');	
 

@@ -51,19 +51,16 @@
          </div>
          <!-- assign-task.ejs -->
      <form id="form2" method="POST" action="/assign">
-            <label for="patient_id">Bed ID:</label>
-            <input type="text" name="patient_id" id="patient_id">
-        <br>
-            <label for="nurse_id">Nurse ID:</label>
-            <select name="nurse_id" id="nurse_id">
-              </select>
-        <br>
-            <label for="task_description">Task Description:</label>
-            <textarea name="task_description" id="task_description"></textarea>
-        <br>
-            <label for="due_date">Due Date:</label>
-            <input type="date" name="due_date" id="due_date">
-        <br>
+        <label for="patient_id">Patient ID:</label>
+        <input type="text" id="patient_id" name="patient_id" required><br><br>
+        <label for="nurse_id">Assign to Nurse:</label>
+        <select name="nurse_id" id="nurse_id">
+
+        </select><br><br>
+        <label for="task_description">Task Description:</label><br>
+        <textarea id="task_description" name="task_description" rows="4" cols="50" required></textarea><br><br>
+        <label for="due_date">Due Date:</label>
+        <input type="date" id="due_date" name="due_date" required><br><br>
         <button type="submit">Assign Task</button>
     </form>
   
@@ -75,6 +72,5 @@
 		<span id="check" ></span>
 	</div>
 	<div id="LangTable"><a href="/profile" id="aa"></a>
-
-</body>
+ </body>
 </html>

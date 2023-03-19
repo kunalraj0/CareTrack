@@ -146,13 +146,17 @@ router.get('/assign', function (req, res, next) {
 	res.render("assign.ejs");
 });
 router.post('/assign',function (req, res, next) {
-	const { patientId, nurseId, taskDescription, dueDate } = req.body;
+	var TaskInfo = req.body;
 	
+	const nurses = new User({
+		_id: TaskInfo.unique_id,
+		username: TaskInfo.username
+	  });
 	var task = new Task({
-		patient_id: patientId,
-		nurse_id: nurseId,
-		task_description: taskDescription,
-		due_date: dueDate
+		patient_id: TaskInfo.patient_id,
+		nurse_id: TaskInfo.nurse_id,
+		task_description: TaskInfo.task_description,
+		due_date: TaskInfo.due_date
 	});
 
 	try {
@@ -167,4 +171,7 @@ router.post('/assign',function (req, res, next) {
   router.get('/qr', function (req, res, next) {
 	res.render("qr.ejs");
 });
+
+
+
 module.exports = router;

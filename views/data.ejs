@@ -11,15 +11,10 @@
 
 </head>
 <body>
-	
-	
-		<div class="logo">
-			
-		</div>		
+	<div class="logo">
+	</div>		
 		<div class="wrapper">
-			
-				
-					
+
 						<div>
 						<div>
 							<img src="./img/image 4 (1).png">
@@ -37,7 +32,8 @@
 					
 						<div >
 							
-							<img src="./img/Rectangle 1.png"class="rectangle"href="/ar">
+							<div id="qr-reader" style="width:300px; left: 50px;"></div>
+    						<div id="qr-reader-results"></div>
 							
 							<!-- <img src="./img/image 3.png" class="qr">
 						 -->
@@ -54,6 +50,28 @@
 			<a href="/assign">Assign</a>
 		</div>
 	</div>
-	<script src="./js/qr.js"></script>
+	
+    </script>
+    <script src="https://unpkg.com/html5-qrcode"></script>
+    <script>
+    var resultContainer = document.getElementById('qr-reader-results');
+var lastResult, countResults = 0;
+
+function onScanSuccess(decodedText, decodedResult) {
+    if (decodedText !== lastResult) {
+        ++countResults;
+        lastResult = decodedText;
+        // Handle on success condition with the decoded message.
+            // Redirect to the scanned URL
+        window.location.href = lastResult;
+        console.log(`Scan result ${decodedText}`, decodedResult);
+    }
+}
+
+var html5QrcodeScanner = new Html5QrcodeScanner(
+    "qr-reader", { fps: 10, qrbox: 250 });
+html5QrcodeScanner.render(onScanSuccess);
+</script>
+	
 </body>
 </html>
